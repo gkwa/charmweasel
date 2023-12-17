@@ -1,8 +1,6 @@
 package charmweasel
 
-import (
-	"fmt"
-)
+import "bytes"
 
 func Main() int {
 	return 0
@@ -16,17 +14,21 @@ const (
 	Baz
 )
 
-func VariadicFunction(args ...CustomType) {
+func VariadicFunction(args ...CustomType) *bytes.Buffer {
+	var buf bytes.Buffer
+
 	for _, arg := range args {
 		switch arg {
 		case Foo:
-			fmt.Println("Foo")
+			buf.WriteString("Foo\n")
 		case Bar:
-			fmt.Println("Bar")
+			buf.WriteString("Bar\n")
 		case Baz:
-			fmt.Println("Baz")
+			buf.WriteString("Baz\n")
 		default:
-			fmt.Println("Unknown")
+			buf.WriteString("Unknown\n")
 		}
 	}
+
+	return &buf
 }

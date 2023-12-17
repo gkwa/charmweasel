@@ -2,9 +2,6 @@
 package charmweasel
 
 import (
-	"bytes"
-	"io"
-	"os"
 	"testing"
 )
 
@@ -39,33 +36,10 @@ func TestVariadicFunction(t *testing.T) {
 
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
-			// Redirect stdout to capture Println output
-			output := captureOutput(func() {
-				VariadicFunction(tt.input...)
-			})
-
-			// Check if the output matches the expected value
-			if output != tt.expected {
-				t.Errorf("Expected output:\n%s\nActual output:\n%s\n", tt.expected, output)
+			output := VariadicFunction(tt.input...)
+			if output.String() != tt.expected {
+				t.Errorf("Expected output:\n%s\nActual output:\n%s\n", tt.expected, output.String())
 			}
 		})
 	}
-}
-
-// captureOutput captures the output of a function and returns it as a string.
-func captureOutput(f func()) string {
-	old := os.Stdout
-	r, w, _ := os.Pipe()
-	os.Stdout = w
-
-	f()
-
-	w.Close()
-	os.Stdout = old
-
-	var buf bytes.Buffer
-	io.Copy(&buf, r)
-	r.Close()
-
-	return buf.String()
 }
