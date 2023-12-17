@@ -1,6 +1,9 @@
 package charmweasel
 
-import "bytes"
+import (
+	"bytes"
+	"log/slog"
+)
 
 func Main() int {
 	return 0
@@ -14,7 +17,7 @@ const (
 	Baz
 )
 
-func VariadicFunction(args ...CustomType) *bytes.Buffer {
+func VariadicFunction(level slog.Level, args ...CustomType) *bytes.Buffer {
 	var buf bytes.Buffer
 
 	for _, arg := range args {
@@ -29,6 +32,8 @@ func VariadicFunction(args ...CustomType) *bytes.Buffer {
 			buf.WriteString("Unknown\n")
 		}
 	}
+
+	buf.WriteString("Log level: " + level.String() + "\n")
 
 	return &buf
 }
