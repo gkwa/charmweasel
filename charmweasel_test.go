@@ -27,12 +27,12 @@ func TestVariadicFunction(t *testing.T) {
 			expected: "Foo\n",
 		},
 		{
-			name:     "TestUnknown",
+			name:     "TestInt",
 			input:    []CustomType{42}, // 42 represents an unknown CustomType
 			expected: "Unknown\n",
 		},
 		{
-			name:     "TestUnknown",
+			name:     "TestNegative",
 			input:    []CustomType{-42}, // -42 represents an unknown CustomType
 			expected: "Unknown\n",
 		},
