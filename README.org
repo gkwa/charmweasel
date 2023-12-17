@@ -1,0 +1,7 @@
+* charmweasel
+
+This is a description of my charmweasel.
+
+** Usage
+
+To use my project, run this command: ./charmweasel --verbose
